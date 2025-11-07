@@ -10,6 +10,7 @@ import Foundation
 enum TaskModels {
     enum CreateTask {
         struct Request {
+            let createdAt: Date
             let title: String
             var isCompleted: Bool
             let dueDate: Date?

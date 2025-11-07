@@ -10,9 +10,10 @@ import Foundation
 
 struct TaskEntity: Codable, Identifiable {
     let id: UUID
+    let createdAt: Date
     var title: String
     var isCompleted: Bool
     var dueDate: Date?
-    var priority: PriorityLevel
+    var priority: String
     var notes: String?
 }

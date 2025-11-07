@@ -18,15 +18,16 @@ final class NewTaskInteractor: NewTaskInteractorLogic {
     func createTask(request: TaskModels.CreateTask.Request) {
         let task = TaskEntity(
             id: UUID(),
+            createdAt: request.createdAt,
             title: request.title,
             isCompleted: false,
             dueDate: request.dueDate,
-            priority: request.priority,
+            priority: request.priority.description,
             notes: request.notes
         )
-        print("task send to worker")
+
         worker.saveTask(task)
-        print("Interactor: Task Created with title \(request.title)")
+
         let response = TaskModels.CreateTask.Response(taskEntity: task)
         presenter?.presentTaskCreated(response: response)
     }

@@ -13,10 +13,11 @@ final class TaskPresenter: TaskPresenterLogic {
     func presentTasks(tasks: [TaskEntity]) {
         let taskModels: [Task] = tasks.map { taskEntity in
             Task(id: taskEntity.id,
+                 createdAt: taskEntity.createdAt,
                  title: taskEntity.title,
                  isCompleted: taskEntity.isCompleted,
                  dueDate: taskEntity.dueDate,
-                 priority: taskEntity.priority,
+                 priority: taskEntity.priority.description,
                  notes: taskEntity.notes)
         }
         viewController?.displayTasks(tasks: taskModels)

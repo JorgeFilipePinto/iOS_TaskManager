@@ -14,11 +14,13 @@ final class TaskWorker: TaskWorkerLogic {
     private var tasks: [TaskEntity] = []
     
     func fetchTasks() -> [TaskEntity] {
+        self.tasks = DataStorage.shared.fetchTasks()
         return tasks
     }
     
     func saveTask(_ task: TaskEntity) {
         tasks.append(task)
-        print("Task saved: \(task.title) with ID: \(task.id) ")
+        DataStorage.shared.saveTask(task)
+        print("Task saved: \(task.title)")
     }
 }

@@ -25,18 +25,17 @@ class NewTaskViewController {
     
     func onTapSave() {
         let request = TaskModels.CreateTask.Request(
+            createdAt: Date(),
             title: title,
             isCompleted: false,
             dueDate: hasDueDate ? dueDate : nil,
             priority: self.priority,
             notes: notes
         )
-        print("Task Created: \(title)")
         interactor.createTask(request: request)
     }
     
     func dissmissSheet() {
-        print("NewTaskViewController: Dismissing Sheet")
         router.closeSheet()
     }
 }

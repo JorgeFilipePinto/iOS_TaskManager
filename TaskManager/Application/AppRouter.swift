@@ -11,6 +11,5 @@ import SwiftUI
 final class AppRouter {
     var home = HomeView()
     var taskRouter = TaskRouter()
-    var chartsRouter = ChartsRouter()
     var settingsRouter = SettingsRouter()
 }

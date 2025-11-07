@@ -13,6 +13,7 @@ final class NewTaskPresenter: NewTaskPresenterLogic {
     func presentTaskCreated(response: TaskModels.CreateTask.Response) {
         let task = Task(
             id: response.taskEntity.id,
+            createdAt: response.taskEntity.createdAt,
             title: response.taskEntity.title,
             isCompleted: response.taskEntity.isCompleted,
             dueDate: response.taskEntity.dueDate,

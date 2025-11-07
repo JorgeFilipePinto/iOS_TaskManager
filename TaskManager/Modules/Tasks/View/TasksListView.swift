@@ -92,7 +92,6 @@ struct TasksListView: View {
         }
         .onChange(of: router.presentSheet) { oldValue, newValue in
               if oldValue == .addTask && newValue == nil {
-                  print("📱 TasksListView: Sheet fechada, recarregando lista")
                   viewController.sheetIsClosed()
               }
           }
