@@ -9,5 +9,8 @@ import SwiftUI
 
 @Observable
 final class AppRouter {
-    let taskRouter = TaskRouter()
+    var home = HomeView()
+    var taskRouter = TaskRouter()
+    var chartsRouter = ChartsRouter()
+    var settingsRouter = SettingsRouter()
 }

@@ -6,19 +6,38 @@
 //
 
 import SwiftUI
-import Observation
 
 @Observable
-class TaskRouter {
+final class TaskRouter {
+    var presentSheet: SheetRoute?
+    var path: [Route] = []
+    var isLoading: Bool = false
+    
     enum Route: Hashable {
         case taskList
         case taskDetails(taskId: UUID)
         case taskEdit(taskId: UUID)
     }
     
-    var path: [Route] = []
+    enum SheetRoute: Hashable, Identifiable {
+        case addTask
+        
+        var id: String {
+            switch self {
+            case .addTask: return "addTask"
+            }
+        }
+    }
     
-    func goToTaskList(taskId: UUID) {
+    func closeSheet() {
+        presentSheet = nil
+    }
+    
+    func goToCreateTask() {
+        presentSheet = .addTask
+    }
+    
+    func goToTaskDetails(taskId: UUID) {
         path.append(.taskDetails(taskId: taskId))
     }
     

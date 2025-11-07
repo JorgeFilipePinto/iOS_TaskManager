@@ -8,39 +8,48 @@
 import SwiftUI
 
 enum AppTab {
-    case Home
-    case tasksList
+    case home
+    case tasks
     case settings
 }
 
 struct ContentView: View {
-    @State private var appRouter = AppRouter()
-    @State private var selectedTab: AppTab = .tasksList
+    @Environment(AppRouter.self) private var appRouter
     
     var body: some View {
         TabView {
             NavigationStack() {
-                
+                HomeView()
             }
             .tabItem { Label("Home", systemImage: "house") }
-            .tag(AppTab.Home)
+            .tag(AppTab.home)
             
             NavigationStack() {
-                
+                TasksListView(router: appRouter.taskRouter)
+            }
+            .navigationDestination(for: TaskRouter.Route.self) { route in
             }
             .tabItem { Label("Tasks", systemImage: "list.dash") }
-            .tag(AppTab.tasksList)
+            .tag(AppTab.tasks)
+            .overlay {
+                if appRouter.taskRouter.isLoading {
+                    LoadingView()
+                }
+            }
             
             NavigationStack() {
+                SettingsView()
+            }
+            .navigationDestination(for: SettingsRouter.Route.self) { route in
                 
             }
             .tabItem { Label("Settings", systemImage: "gearshape") }
             .tag(AppTab.settings)
         }
-        .environment(appRouter)
     }
 }
 
 #Preview {
     ContentView()
+        .environment(AppRouter())
 }
