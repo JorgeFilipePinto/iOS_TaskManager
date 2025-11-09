@@ -16,12 +16,26 @@ struct ListOfTasksView: View {
         ForEach(groupedTasks.keys.sorted(by: >), id: \.self) { date in
             Section(header: Text(sectionTitle(date))) {
                 ForEach(groupedTasks[date] ?? []) { task in
-                    Button(action: {
-                        onTapTask(task.id)
-                    }) {
-                        TaskElementView(task: task)
-                    }
-                    .buttonStyle(.plain)
+                    TaskElementView(task: task)
+                        .swipeActions(edge: .trailing) {
+                            Button (action: {
+                                //TODO: Implement edit action
+                            }) {
+                                Image(systemName: "pencil")
+                            }
+                            Button(action: {
+                                //TODO: Implement delete action
+                            }) {
+                                Image(systemName: "trash")
+                            }
+                        }
+                        .swipeActions(edge: .leading) {
+                            Button(action: {
+                                //TODO: Implement complete action
+                            }) {
+                                Image(systemName: "checkmark")
+                            }
+                        }
                 }
             }
         }

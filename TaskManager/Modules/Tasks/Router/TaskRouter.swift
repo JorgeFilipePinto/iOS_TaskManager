@@ -15,17 +15,18 @@ final class TaskRouter {
     
     enum Route: Hashable {
         case taskList
-        case taskEdit(taskId: UUID)
     }
     
     enum SheetRoute: Hashable, Identifiable {
         case addTask
-        case taskDetails(taskId: UUID)
+        case taskDetails(task: Task)
+        case taskEdit(task: Task)
         
         var id: String {
             switch self {
             case .addTask: return "addTask"
             case .taskDetails: return "taskDetails"
+            case .taskEdit: return "taskEdit"
             }
         }
     }

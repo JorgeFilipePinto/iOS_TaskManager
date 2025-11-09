@@ -8,13 +8,28 @@
 import SwiftUI
 
 struct TaskDetailView: View {
-    let taskId: UUID
+    let task: Task
     
     var body: some View {
-        Text("Task Detail View for task with ID: \(taskId)")
+        VStack(alignment: .leading, spacing: 16) {
+            Text(task.title)
+                .font(.title)
+                .fontWeight(.bold)
+            
+            Text("Due Date: \(task.dueDate, formatter: dateFormatter)")
+                .font(.subheadline)
+                .foregroundColor(.gray)
+            
+            Text(task.description)
+                .font(.body)
+            
+            Spacer()
+        }
+        .padding()
+        .navigationTitle(task.title)
     }
 }
 
 #Preview {
-    TaskDetailView(taskId: Task.sample.first!.id)
+    TaskDetailView(task: Task.sample.first!)
 }

@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct TaskEditView: View {
-    let taskId: UUID
+    let task: Task
     
     var body: some View {
-        Text("TaskEditView")
+        VStack {
+
+        }
+        .navigationTitle(task.title)
     }
 }
 
 #Preview {
-    TaskEditView(taskId: Task.sample.first!.id)
+    TaskEditView(task: Task.sample.first!)
 }
