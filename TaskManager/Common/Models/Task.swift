@@ -19,7 +19,44 @@ struct Task: Identifiable, Codable {
 
 
 extension Task {
-    static var sample: Task {
-        Task(id: UUID(), createdAt: Date(), title: "Sample Task", isCompleted: false, dueDate: nil, priority: "High", notes: nil)
+    static var sample: [Task] {
+        [
+            Task(
+                id: UUID(),
+                createdAt: Date(),
+                title: "Reunião com cliente",
+                isCompleted: false,
+                dueDate: Date(),
+                priority: "High",
+                notes: "Discutir novo projeto"
+            ),
+            Task(
+                id: UUID(),
+                createdAt: Date(),
+                title: "Revisar código",
+                isCompleted: true,
+                dueDate: Date().addingTimeInterval(3600),
+                priority: "Medium",
+                notes: "Pull request #123"
+            ),
+            Task(
+                id: UUID(),
+                createdAt: Date().addingTimeInterval(-86400), // Ontem
+                title: "Escrever documentação",
+                isCompleted: false,
+                dueDate: nil,
+                priority: "Low",
+                notes: "API endpoints"
+            ),
+            Task(
+                id: UUID(),
+                createdAt: Date().addingTimeInterval(-172800), // 2 dias atrás
+                title: "Fazer backup",
+                isCompleted: false,
+                dueDate: Date().addingTimeInterval(7200),
+                priority: "Low",
+                notes: "Backup semanal"
+            )
+        ]
     }
 }

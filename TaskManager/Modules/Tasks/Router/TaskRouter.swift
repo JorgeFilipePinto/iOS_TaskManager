@@ -15,16 +15,17 @@ final class TaskRouter {
     
     enum Route: Hashable {
         case taskList
-        case taskDetails(taskId: UUID)
         case taskEdit(taskId: UUID)
     }
     
     enum SheetRoute: Hashable, Identifiable {
         case addTask
+        case taskDetails(taskId: UUID)
         
         var id: String {
             switch self {
             case .addTask: return "addTask"
+            case .taskDetails: return "taskDetails"
             }
         }
     }
@@ -37,8 +38,8 @@ final class TaskRouter {
         presentSheet = .addTask
     }
     
-    func goToTaskDetails(taskId: UUID) {
-        path.append(.taskDetails(taskId: taskId))
+    func navigateToTaskDetail(taskId: UUID) {
+        presentSheet = .taskDetails(taskId: taskId)
     }
     
     func goToEditTask(taskId: UUID) {

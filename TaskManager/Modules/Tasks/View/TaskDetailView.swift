@@ -16,5 +16,5 @@ struct TaskDetailView: View {
 }
 
 #Preview {
-    TaskDetailView(taskId: Task.sample.id)
+    TaskDetailView(taskId: Task.sample.first!.id)
 }

@@ -5,7 +5,7 @@
 //  Created by Jorge Filipe Correia Pinto on 06/11/2025.
 //
 
-import Foundation
+import SwiftUI
 
 @Observable
 final class TaskViewController: TaskViewControllerLogic {
@@ -40,5 +40,28 @@ final class TaskViewController: TaskViewControllerLogic {
         self.tasks = tasks
     }
     
+    func getSectionTitle(for date: Date) -> String {
+        let calendar = Calendar.current
+        if calendar.isDateInToday(date) {
+            return "Hoje"
+        } else if calendar.isDateInYesterday(date) {
+            return "Ontem"
+        } else {
+            return date.formatted(date: .abbreviated, time: .omitted)
+        }
+    }
+    
+    func getPriorityColor(for priority: String) -> Color {
+        switch priority {
+        case "high":
+            return .red
+        case "medium":
+            return .yellow
+        case "low":
+            return .green
+        default:
+            return .primary
+        }
+    }
 }
 
